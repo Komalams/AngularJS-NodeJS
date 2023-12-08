@@ -1,0 +1,177 @@
+
+-----------------------------------------------------------
+//creating objects
+
+<body ng-init=" s1={name:'abi', age:20, mobile:98860748,  address:{district:'bangalore',    state:'KA'}};
+                    s2={name:'ram', age:25, mobile:34860748};
+                    s3={name:'raj', age:26, mobile:98450748};
+                    s4={name:'sam', age:30, mobile:987650748};
+             
+
+                     ">
+        <!-- accessing objects -->
+      <h1>student name is  {{ s1.name}}</h1>
+      <h1>student age is {{ s1.age}}</h1>
+      <h1>student mobile is {{ s1.mobile}}</h1>
+      <h1>student address is {{ s1.address}}</h1>
+      <h1>student district is {{ s1.address.district}}</h1>
+      <h1>student state is {{ s1.address.state}}</h1>
+      
+
+----------------------------------------------------------
+creating array of objects
+
+<body ng-init=" 
+               students=[
+                            {name:'abi', age:20, mobile:98860748}, 
+                            {name:'ram', age:25, mobile:34860748},
+                            {name:'raj', age:26, mobile:98450748},
+                            {name:'sam', age:30, mobile:987650748}
+                        ];
+
+                        students.pop();
+                        students.push({name:'ramya', age:30, mobile:987650748});
+                     ">
+        <!-- accessing objects -->
+        <h1>{{ students[0]}} </h1>
+        <h1>lenght of array ={{ students.length}} </h1>
+        <h1>{{ students[0].name}} </h1>
+        <h1>{{ students}} </h1>
+--------------------------------------------------------------------
+functions
+-------------------
+1-function without parameter no return type
+2-function without parameter with return type
+3-function with parameter no return type
+4-function with parameter with return type
+5-annonomous functions
+6-function expression
+7-arrow functions
+
+function print() {
+          var college = "RNSIT";
+          console.log(college);
+        }
+        
+        function myfunction() {
+          var x = 100;
+          var y = 200;
+          var result = x + y;
+          console.log(result);
+        }
+        
+        function Myfunction() {
+           x = 500;
+           y = 200;
+           result = y - x;
+          console.log(result);
+        }
+        Myfunction();
+        print();
+
+------------------------------------
+function myfunction(x, y) {
+   result = x + y;
+  console.log(result);
+}
+myfunction(20, 30); //20 + 30
+myfunction(100, 200); // 100 +200
+
+
+--------------------------------------
+function fn(name, city) {
+  console.log(name, city);
+}
+fn("umesh", 'Bangalore', 50, 60);
+fn("umesh");
+-------------------------------------------
+//return function
+function add(x, y){
+    return x+y;
+}
+  result=  add(10, 20);
+  console.log(result);
+-------------------------
+//annonomous function
+var fnname = function () {
+  console.log("i am anonymous function");
+};
+
+fnname();
+----------------------------------
+
+//arrow fuction
+var add = (a, b) => a + b;
+
+add(10, 30);
+
+-----------------------------
+callback funtion
+--------------------------------
+function print() {
+  console.log("printing value");
+}
+
+function fn(f) {
+  console.log(f);
+  f();
+  f();
+}
+//fn(100);
+//fn("RNSIT");
+//fn(print);
+fn(function () {
+ var  city = "Banalore";
+  console.log(city);
+});
+-------------------------------------------------------
+  <input type="tel" pattern="[0-9]{10}" required title="enter 10-digit mobile number">
+ 
+ 
+ <h2>Select Subjects:</h2>
+      <input type="checkbox" ng-model="selectedSubjects.javax" > Java
+      <input type="checkbox" ng-model="selectedSubjects.testing" > Testing
+      <input type="checkbox" ng-model="selectedSubjects.net" > .NET
+      <input type="checkbox" ng-model="selectedSubjects.angular" > Angular
+      <h2>Selected Subjects:</h2>
+    <ul>
+      <li ng-repeat="(subject, selected) in selectedSubjects" ng-if="selected">{{ subject }}</li>
+    </ul>
+---------------------------------------------------------------
+select ur operation
+  <select ng-model="a">
+    <option value="add" >add</option>    
+    <option value="sub" >seb</option>   
+    <option value="mul">mul</option>   
+</select>
+   
+   
+<h1>{{ a}}</h1>
+
+----------------------------------------------------------------------
+MVC
+----------------------------------------------------------------------
+<html ng-app="myApp">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        // var app=angular.module("myApp", []);
+        // app.controller("myController", function($scope){
+        // $scope.msg="welcome to RNSIT";
+        // });
+        angular.module("myApp", [])
+        .controller("myController", function($scope){
+         $scope.msg="welcome to SJBIT";
+         });
+
+      </script>
+
+ <body ng-controller="myController">
+ <div >
+    <h2>{{msg}}</h2>
+      <h2 ng-bind="msg"></h2>
+ </div >
+</body>
+</html>
+-------------------------------------------------------------------------
+
+

@@ -1,0 +1,643 @@
+<h2>Select Subjects:</h2>
+      <input type="checkbox" ng-model="selectedSubjects.javax" > Java
+      <input type="checkbox" ng-model="selectedSubjects.selinium" > Testing
+      <input type="checkbox" ng-model="selectedSubjects.net" > .NET
+      <input type="checkbox" ng-model="selectedSubjects.angular" > Angular
+      <h2>Selected Subjects:</h2>
+    <ul>
+      <li ng-repeat="(subject, selected) in selectedSubjects" ng-if="selected">{{ subject }}</li>
+    </ul>
+
+selectedSubjects={
+  "javax": false,
+  "selinium": false,
+  "net": false,
+  "angular": false
+}
+	----------------------------------------------------------------------
+welcome user
+<html ng-app="myApp">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app=angular.module("myApp", []);
+        app.controller("myController", function($scope){
+            $scope.HELLO=function(n){
+            $scope.v="welcome "+n;
+        }
+        });
+
+      </script>
+
+ <body ng-controller="myController">
+    <input type="text" placeholder="enter name" ng-model="n">
+     <h2>{{v}}</h2>
+    <h2 ng-bind="msg"></h2>
+      <button ng-click="HELLO(n )">clik me</button>
+
+</body>
+</html>
+-----------------------------------------------------------------------------------
+add 2 numbers
+<html ng-app="myApp">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app=angular.module("myApp", []);
+        app.controller("myController", function($scope){
+            $scope.add=function(x, y){
+            $scope.r=x+y;
+             alert(x+y)
+        }
+        });
+
+      </script>
+
+ <body ng-controller="myController">
+    <input type="number" placeholder="enter number1" ng-model="n1">
+    <input type="number" placeholder="enter number2" ng-model="n2">
+     <h2>sum of {{n1}} +  {{n2}} is {{r}}</h2>
+    <h2 ng-bind="msg"></h2>
+      <button ng-click="add(n1, n2 )">clik me</button>
+
+</body>
+</html>
+--------------------------------------------------------------
+<html ng-app="myApp">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js">
+        
+    </script>
+    <script>
+        var app=angular.module("myApp", []);
+        app.controller("myController", function($scope){
+           
+
+            $scope.add=function(){
+                $scope.result= $scope.a+$scope.b;
+            }
+        });
+    </script>
+    <body ng-controller="myController" >
+        
+        <input type="number" placeholder="number 1" ng-model="a">
+        <input type="number" placeholder="number 2" ng-model="b">
+        <button ng-click="add()">click me</button>
+        
+    <h1>{{result}}</h1>
+      
+    </body>
+</html>
+------------------------------------------------------------------------
+push elements to array
+<html ng-app="myApp">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+<body ng-controller="myController">
+
+Enter a Number:
+  <input type="number"  ng-model="newNumber">
+  <button ng-click="addNumber()">Add to Array</button>
+  <h2>Numbers Array:</h2>
+  <ul>
+    <li ng-repeat="number in numbers">{{ number }}</li>
+  </ul>
+
+  <script>
+    var myApp = angular.module('myApp', []);
+    myApp.controller('myController', function($scope) {
+      $scope.numbers = [];
+      $scope.addNumber = function() {
+          $scope.numbers.push($scope.newNumber);
+          $scope.newNumber = '';
+        }
+     });
+  </script>
+
+</body>
+
+</html>
+----------------------------------------------------------------
+push and delete element of array
+<html ng-app="myApp">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+<body ng-controller="myController">
+
+Enter a Number:
+  <input type="text"  ng-model="newNumber">
+  <button ng-click="addNumber()">Add to Array</button> 
+  <button ng-click="deleteNumber()">Delete from End</button>
+  <h2>Numbers Array:</h2>
+  <ul>
+    <li ng-repeat="number in numbers">{{ number }}</li>
+  </ul>
+
+  <script>
+    var myApp = angular.module('myApp', []);
+    myApp.controller('myController', function($scope) {
+      $scope.numbers = [];
+      $scope.addNumber = function() {
+        $scope.numbers.push($scope.newNumber);
+        $scope.newNumber = '';
+      };
+
+      $scope.deleteNumber = function() {
+        $scope.numbers.pop();
+      };
+    });
+  </script>
+</body>
+</html>
+-------------------------------------------------------------------
+delete perticular element
+<html ng-app="myApp">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+<body ng-controller="myController">
+
+Enter a Number:
+  <input type="number"  ng-model="newNumber">
+  <button ng-click="addNumber()">Add to Array</button>
+  <h2>Numbers Array:</h2>
+  <ul>
+    <li ng-repeat="number in numbers">
+      {{ number }}
+      <button ng-click="deleteNumber($index)">Delete</button>
+    </li>
+  </ul>
+
+  <script>
+    var myApp = angular.module('myApp', []);
+    myApp.controller('myController', function($scope) {
+      $scope.numbers = [];
+
+      $scope.addNumber = function() {
+        $scope.numbers.push($scope.newNumber);
+        $scope.newNumber = '';
+      };
+
+      $scope.deleteNumber = function(index) {
+        $scope.numbers.splice(index, 1);
+      };
+    });
+  </script>
+</body>
+</html>
+--------------------------------------------------------------
+search element
+<html ng-app="myApp">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+<body ng-controller="myController">
+
+Enter a Number:
+<input type="number" ng-model="newNumber">
+<button ng-click="addNumber()">Add to Array</button>
+
+Search:
+<input type="number" ng-model="searchNumber">
+
+<h2>Numbers Array:</h2>
+<ul>
+  <li ng-repeat="number in numbers | filter:searchNumber">{{ number }}</li>
+</ul>
+
+<script>
+  var myApp = angular.module('myApp', []);
+  myApp.controller('myController', function($scope) {
+    $scope.numbers = [];
+    $scope.addNumber = function() {
+      $scope.numbers.push($scope.newNumber);
+      $scope.newNumber = '';
+    };
+  });
+</script>
+
+</body>
+
+</html>
+-----------------------------------------------------------
+update a perticular number
+<html ng-app="myApp">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+<body ng-controller="myController">
+
+  Enter a Number:
+  <input type="number" ng-model="newNumber">
+  <button ng-click="addNumber()">Add to Array</button>
+
+  <h2>Numbers Array:</h2>										
+  <ul>
+    <li ng-repeat="number in numbers">
+      {{ number }}
+      <input type="number" ng-model="updatedNumber">
+      <button ng-click="updateNumber(number, updatedNumber)">Update</button>
+      <button ng-click="deleteNumber(number)">Delete</button>
+    </li>
+  </ul>
+
+  <script>
+    var myApp = angular.module('myApp', []);
+    
+    myApp.controller('myController', function($scope) {
+      $scope.numbers = [];
+      $scope.updatedNumber = '';
+
+      $scope.addNumber = function() {
+        $scope.numbers.push($scope.newNumber);
+        $scope.newNumber = '';
+      };
+
+      $scope.deleteNumber = function(number) {
+        var index = $scope.numbers.indexOf(number);
+        $scope.numbers.splice(index, 1);
+      };
+
+      $scope.updateNumber = function(number, updatedNumber) {
+        var index = $scope.numbers.indexOf(number);
+        $scope.numbers[index] = updatedNumber;
+        $scope.updatedNumber = '';
+      };
+    });
+  </script>
+
+</body>
+
+</html>
+-----------------------------------------------------------------
+push name and age to an obj array
+<html ng-app="myApp">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+<body ng-controller="myController">
+Enter a Name:
+<input type="text" ng-model="name">
+Enter an Age:
+<input type="number" ng-model="age">
+<button ng-click="addStudent()">Add to Array</button>
+<h2>Students Array:</h2>
+<ul>
+  <li ng-repeat="student in students">
+    Name: {{ student.name }}, Age: {{ student.age }}
+  </li>
+</ul>
+
+<script>
+  var myApp = angular.module('myApp', []);
+  myApp.controller('myController', function($scope) {
+    $scope.students = [];
+
+    $scope.addStudent = function() {
+      $scope.students.push({ name: $scope.name, age: $scope.age });
+     
+    };
+  });
+</script>
+</body>
+</html>
+-----------------------------------------------------------------------------
+
+-------------------------------------------------------------------
+<html ng-app="myApp">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+<body ng-controller="myController">
+
+Enter a Name:
+<input type="text" ng-model="newStudent.name">
+
+Enter an Age:
+<input type="number" ng-model="newStudent.age">
+
+<button ng-click="addStudent()">Add to Array</button>
+
+<h2>Students Array:</h2>
+<ul>
+  <li ng-repeat="student in students">
+    Name: {{ student.name }}, Age: {{ student.age }}
+  </li>
+</ul>
+
+<script>
+  var myApp = angular.module('myApp', []);
+  myApp.controller('myController', function($scope) {
+    $scope.students = [];
+
+    $scope.addStudent = function() {
+      $scope.students.push({ name: $scope.newStudent.name, age: $scope.newStudent.age });
+      $scope.newStudent = {}; // Clear the input fields after adding a student
+    };
+  });
+</script>
+
+</body>
+
+</html>
+
+
+------------------------------------------------------------------------
+update name & age
+<html ng-app="myApp">
+ <script src="https://ajax.googleapis.com//ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+<body ng-controller="myController">
+
+ Enter Student Name:
+ <input type="text" ng-model="newStudentName">
+
+ Enter Student Age:
+ <input type="number" ng-model="newStudentAge">
+
+ <button ng-click="addStudent()">Add Student</button>
+
+ <h2>Student List:</h2>
+ <ul>
+  <li ng-repeat="student in students">
+   {{ student.name }}
+   {{ student.age }}
+   <input type="text" ng-model="updatedStudentName" ng-init="updatedStudentName = student.name">
+
+   <input type="number" ng-model="updatedStudentAge" ng-init="updatedStudentAge = student.age">
+
+   <button ng-click="updateStudent(student, updatedStudentName, updatedStudentAge)">Update</button>
+   <button ng-click="deleteStudent(student)">Delete</button>
+  </li>
+ </ul>
+
+ <script>
+  var myApp = angular.module('myApp', []);
+   
+  myApp.controller('myController', function($scope) {
+   $scope.students = [];
+   $scope.updatedStudentName = '';
+   $scope.updatedStudentAge = '';
+
+   $scope.addStudent = function() {
+    var newStudent = {
+      name: $scope.newStudentName,
+      age: $scope.newStudentAge
+    };
+
+    $scope.students.push(newStudent);
+
+    $scope.newStudentName = '';
+    $scope.newStudentAge = '';
+   };
+
+   $scope.deleteStudent = function(student) {
+    var index = $scope.students.indexOf(student);
+    $scope.students.splice(index, 1);
+   };
+
+   $scope.updateStudent = function(student, updatedStudentName, updatedStudentAge) {
+    var index = $scope.students.indexOf(student);
+
+    $scope.students[index].name = updatedStudentName;
+    $scope.students[index].age = updatedStudentAge;
+    };
+  });
+ </script>
+
+</body>
+
+</html>
+
+
+
+filter
+---------------------------------------------------------
+<html ng-app="myApp">
+
+    <script src="angularjs.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+         $scope.message = "Welcome to JSS";
+         $scope.amount = 50234; 
+         $scope.mydate=new Date();
+});
+      </script>
+
+   
+<body ng-controller="myController">
+ <div >
+    <h2>{{message | lowercase}}</h2>
+      <h2 ng-bind="message"></h2>
+      <h2>{{message | uppercase}}</h2>
+      <h1>{{amount|number }}</h1>
+      <h1>{{amount|number:3 }}</h1>
+      <h2> {{amount|currency }}</h2>
+      <h2> {{amount|currency:"Rs" }}</h2>
+      <h1>{{mydate}}</h1>
+      <h1>{{mydate | date}}</h1>
+      <h1>{{mydate | date:"yyyy"}}</h1>
+      <h1>{{mydate | date:"MMMM" }}</h1>
+      <h1>{{mydate | date:"hh" }}</h1>
+      <h1>{{mydate | date:"dd-mm-yy" }}</h1>
+      <h1>{{mydate | date:"hh:mm:ss a dd-mm-yy" }}</h1>
+      <h1>{{mydate | date:"short" }}</h1>
+ </div >
+</body>
+</html>
+
+---------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+
+
+orderby
+---------------------
+<html ng-app="myApp">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+         $scope.names=['umesh', 'ramesh', 'suresh', 'ram','sam'] ;
+       
+});
+      </script>
+
+   
+<body ng-controller="myController">
+ <div >
+    <ul>
+        <li ng-repeat="n in names | orderBy">{{n}}</li>
+        <br>
+        <li ng-repeat="n in names | orderBy:'reverse'">{{n}}</li>
+    </ul>
+ </div >
+
+
+</body>
+</html>
+
+---------------------------------------------------------------
+<html ng-app="myApp">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+          $scope.data = [
+                { name: 'Umesh', salary: 50000 },
+                { name: 'Ramesh', salary: 45000 },
+                { name: 'Suresh', salary: 60000 },
+                { name: 'Ram', salary: 35000 },
+                { name: 'Sam', salary: 40000 },
+                { name: 'Abi', salary: 55000 }
+];
+
+       
+});
+      </script>
+
+   
+<body ng-controller="myController">
+ <div >
+    <ul>
+      <li ng-repeat="person in data | orderBy:'name'">{{person.name}}</li>
+      <br>
+      <li ng-repeat="person in data | orderBy:'salary'">{{person.name}} - {{person.salary}}</li>
+      
+    </ul>
+ </div >
+
+
+</body>
+</html>
+
+
+
+orderby on objcts
+--------------------------------
+<html ng-app="myApp">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+            $scope.emp =[{name:'umesh', age:40 , contact:9886043786}, 
+                        {name:'raj', age:20 , contact:983486452378},
+                        {name:'ram', age:30 , contact:933488678546}]
+       });
+      </script>
+
+   
+<body ng-controller="myController">
+ <div >
+    <table border="1">
+    <tr>
+        <td>Name</td>
+        <td>Age</td>
+        <td>Contact</td>
+    </tr>
+
+    <tr ng-repeat="e in emp | orderBy:'age':'reverse'">
+        <td>{{e.name}}</td>
+        <td>{{e.age}}</td>
+        <td>{{e.contact}}</td>
+    </tr>
+   </table>
+ </div >
+
+
+</body>
+</html>
+
+
+----------------------------------------------
+search
+<!DOCTYPE html>
+<html ng-app="filterApp">
+<head>
+    <title>Simple Filter Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="filterController">
+    <h1>Simple Filter Example</h1>
+
+    <label for="search">Search:</label>
+    <input type="text" id="search" ng-model="searchText">
+
+    <ul>
+        <li ng-repeat="item in items | filter: searchText">{{ item }}</li>
+    </ul>
+
+    <script>
+        var app = angular.module('filterApp', []);
+
+        app.controller('filterController', function($scope) {
+            $scope.items = ["Priya", "Diya", "Anjali", "Anika", "Aarti", "Aaradhya", "Riya", "Ishika", "Trisha", "Lakshmi"];
+        });
+    </script>
+</body>
+</html>
+------------------------------------------------------------------------------
+
+search
+
+<!DOCTYPE html>
+<html ng-app="filterApp">
+<head>
+  <title>Simple Filter Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="filterController">
+  <h1>Simple Filter Example</h1>
+
+  <label for="searchName">Search Student Name:</label>
+  <input type="text" id="searchName" ng-model="searchName">
+
+  <label for="searchAge">Search Student Age:</label>
+  <input type="number" id="searchAge" ng-model="searchAge">
+
+  <ul>
+    <li ng-repeat="student in students | filter: { name: searchName, age: searchAge }">{{ student.name }} - {{ student.age }}</li>
+  </ul>
+
+  <script>
+    var app = angular.module('filterApp', []);
+
+    app.controller('filterController', function($scope) {
+      $scope.students = [
+        { name: 'Ram', age: 20 },
+        { name: 'Sam', age: 25 },
+        { name: 'Abi', age: 30 },
+        { name: 'Raj', age: 22 },
+        { name: 'Ria', age: 18 }
+      ];
+    });
+  </script>
+</body>
+</html>
+
+
+-----------------------------------------------------------------------------------
+limitTo
+<!DOCTYPE html>
+<html ng-app="filterApp">
+<head>
+    <title>Simple Filter Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="filterController">
+    <h1>Simple Filter Example</h1>
+
+    <ul>
+      <li ng-repeat="item in items | limitTo:-3">{{ item }}</li>
+    </ul>
+    
+   
+
+    <script>
+        var app = angular.module('filterApp', []);
+
+        app.controller('filterController', function($scope) {
+            $scope.items = ["Priya", "Diya", "Anjali", "Anika", "Aarti", "Aaradhya", "Riya", "Ishika", "Trisha", "Lakshmi"];
+        });
+    </script>
+</body>
+</html>
