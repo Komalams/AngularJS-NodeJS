@@ -1,0 +1,720 @@
+ 
+ variables  
+<div ng-init="a=490 ; b=90">
+    {{"value of a is "+a +" " + "value of b is " +b}}
+</div>
+ arrays
+<div ng-init="names=['umesh', 'ramesh', 'suresh',40.6] "></div>
+<p ng-bind="names[3]"></p>
+
+ arrays
+ <div ng-init="names=['umesh', 'ramesh', 'suresh',40.6, ram] ;
+                names.push('raj');
+                names.pop();
+                names.unshift('raj');
+                names.splice(1,0,'sam' )"></div>
+     <br>
+    {{names.length}}
+    <br>
+    <h1  ng-repeat="n in names">{{ n }}</h3>></h1>
+
+    <ul ng-repeat="n in names">
+        <li>{{ n }}</li>
+    </ul>
+
+
+ objects
+<div ng-init="student1 ={name:'ram', age:40};
+            student2 ={name:'raj', age:20};
+            student3 ={name:'punith', age:30};
+           
+"></div>
+<h2>{{student2.name}}</h2>
+<h2>{{student2.age}}</h2>
+
+
+
+array of objects
+    <div ng-init="student =[{name:'sam', age:40}, 
+                            {name:'ramesh', age:20},
+                            {name:'suresh', age:30},
+    ]"></div>
+    <h2>{{student[0].name}}</h2>
+    <h2>{{student[0].age}}</h2>
+
+    <ul >
+        <li ng-repeat="s in student">
+            Name= {{s.name}} , Age={{s.age}}
+
+        </li>
+    </ul>
+
+
+ng-model
+----------------------------------------
+<div ng-init="quantity=1; price=5">
+    <input type="number" placeholder="Enter quantiyt" ng-model="quantity">
+    <br>
+    <input type="number" placeholder="Enter price" ng-model="price">
+
+    <br>
+    <p>total = {{quantity* price}}</p>
+
+</div>
+ 
+ 
+ using expression
+    <input type="text" placeholder="Enter ur name" ng-model="name">
+    <br>
+
+   <h2>{{name}}</h2> 
+<br>
+<br>
+	 
+using ng-bind
+   <input type="text" placeholder="Enter ur name" ng-model="name">
+    <br>
+   
+   <h2 ng-bind="name"></h2>
+
+
+
+  ng-model ng-bind
+   -----------------------
+    <style>
+        body{
+            background-color: {{color}};
+            font-size: {{size}}
+        }
+        
+    </style>
+
+<body>
+    <input type="text" placeholder="Enter ur color" ng-model="color">
+    <br>
+    <br>
+
+
+    <input type="text" placeholder="Enter ur size" ng-model="size">
+    <p> welcome to JSS</p>
+------------------------------------------------------------------------
+ one <textarea ng-model="text1" name="" id="" cols="30" rows="10"></textarea>
+ <h2>{{text1}}</h2>
+ <br>
+ <br>
+ two <textarea ng-model="text"></textarea>
+ <h3 ng-bind="text"></h3>
+
+ ----------------------------------
+ select Training Type:<br />
+                 
+    <label>
+        <input type="radio"  name="Training" ng-model="trainingtype" value="online"> Online
+    </label>
+
+    <label>
+        <input type="radio" name="Training" ng-model="trainingtype" value="ofline"> Offline
+    </label>
+<h2 ng-bind="trainingtype"></h2>
+
+
+select Gender
+    <select  ng-model="student_gender">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+        </select>
+<h3 ng-bind="student_gender"></h3>
+
+
+Subjects<br />
+    <label><input type="checkbox" value="java" ng-model="j" />JAVA</label> <br />
+    <label><input type="checkbox" value="python" ng-model="p" />PYTHON</label> <br />
+    <label><input type="checkbox"  value="testing" ng-model="t" />TESTING</label><br /><br />
+
+
+
+  <input type="submit" value="Submit" />
+
+  
+<form action="">
+        <input type="text" placeholder="enter ur name" value="umesh">
+       
+        <input type="password" placeholder="password">
+        <input type="email" placeholder="enter emailid">
+        <input type="email" name="" id="">
+        <input type="number" placeholder="enter number">
+       <input type="date" name="" id="">
+       <input type="datetime" name="" id="">
+        <input type="button" value="submit">
+       range <input type="range" name="" id="">
+       select subject<input type="checkbox" name="t" >Testing
+                    <input type="checkbox" name="j" >java
+                    <input type="checkbox" name="p" >python
+       <br>
+       select gender<input type="radio" name="gender">Male
+                     <input type="radio" name="gender">FeMale
+
+                     <input type="submit">
+                     <input type="reset" value="reset">
+                     <input type="search" name="" id="">
+                     <input type="time" name="" id="">
+
+                     <input >
+
+		automocplete
+    <input list="mylist">
+    <datalist id="mylist">
+       <option value="sam"></option>
+       <option value="suresh"></option>
+       <option value="suraj"></option>
+       <option value="amar"></option>
+
+
+    </form>
+
+
+
+
+MVC
+----------------
+one way data binding
+---------------------
+<html ng-app="myApp">
+
+    <script src="angularjs.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+         $scope.message = "Welcome to JSS";
+});
+      </script>
+
+   
+<body ng-controller="myController">
+ <div >
+    <h2>{{message}}</h2>
+      <h2 ng-bind="message"></h2>
+ </div >
+
+
+</body>
+</html>
+
+2way data binding
+---------------------
+ <input type="text" ng-model="name">
+
+    <br> 
+    <h2>{{name}}</h2>
+
+
+--------------------------------------------------
+ <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+         $scope.student ={name:'umesh', age:40}
+});
+       
+    </script>
+
+   
+<body ng-controller="myController">
+
+    Enter name: <input type="text" ng-model="student.name">
+    <br>
+    Enter age: <input type="text"  ng-model="student.age">
+
+    <br><br>
+ <table border="1">
+    <tr>
+        <td>Name</td>
+        <td>{{student.name}}</td>
+    </tr>
+    <tr>
+        <td>Age</td>
+        <td>{{student.age}}</td>
+    </tr>
+
+ </table>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+ng-repeat
+--------------------
+$scope.student =['umesh', 'ramesh', 'rajesh', 'suresh'];
+});
+       
+    </script>
+
+   
+<body ng-controller="myController">
+
+   <!-- <ol>
+    <li ng-repeat="s in student">{{s}}</li>
+   </ol> -->
+
+   <h3 ng-repeat="s in student">{{s }}</h3>
+
+    <br><br>
+
+
+
+ng-reppeate on objects
+-----------------------
+
+<html ng-app="myApp">
+
+    <script src="angularjs.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+         $scope.student =['umesh', 'ramesh', 'rajesh', 'suresh'];
+         $scope.person ={name:'umesh', age:40 , contact:9886}
+         $scope.emp =[{name:'umesh', age:40 , contact:9886}, 
+                        {name:'raj', age:20 , contact:983486},
+                        {name:'ram', age:30 , contact:9334886}, 
+
+        ];
+});
+       
+    </script>
+
+   
+<body ng-controller="myController">
+
+   <!-- <ol>
+    <li ng-repeat="s in student">{{s}}</li>
+   </ol> -->
+
+   <!-- <h3 ng-repeat="(x,y) in person">{{x}}={{y}}</h3> -->
+   <h3 ng-repeat="e in emp">
+    Name is {{e.name}}
+    <br>
+    Age is {{e.age}}
+    <br>
+    constact is {{e.age}}
+    <br>
+   </h3>
+
+   <table border=1>
+    <tr>
+        <td>Name</td>
+        <td>Age</td>
+        <td>Contact</td>
+    </tr>
+
+    <tr ng-repeat="e in emp">
+        <td>{{e.name}}</td>
+        <td>{{e.age}}</td>
+        <td>{{e.contact}}</td>
+    </tr>
+   </table>
+
+</body>
+</html>
+
+
+
+<html ng-app="myApp">
+<head>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="myController">
+        <button ng-click="sayHello()">Say Hello</button>
+        <p>The result of adding 5 and 3 is {{ addNumbers(5, 3) }}</p>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+            $scope.sayHello = function() {
+                alert('Hello, from the function!');
+            };
+
+            $scope.addNumbers = function(a, b) {
+                return a + b;
+            };
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+<html ng-app="myApp">
+<head>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+                 $scope.addNumbers = function(a, b) {
+                return a + b;
+            };
+        });
+    </script>
+</head>
+<body>
+    <div ng-controller="myController">
+            <p>The result of adding 5 and 3 is {{ addNumbers(5, 3) }}</p>
+    </div>
+   
+</body>
+</html>
+------------------------------------------------------
+ <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+            $scope.sayHello = function() {
+                alert('Hello, from the function!');
+            };
+          
+        });
+    </script>
+</head>
+<body>
+    <div ng-controller="myController">
+        <button ng-click="sayHello()">Say Hello</button>
+       </div>
+
+    
+</body>
+</html>
+
+
+
+add 2 numbers
+-----------------------
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Add Numbers</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myController">
+    <h1>Add Two Numbers</h1>
+
+    <form ng-submit="addNumbers()">
+       Enter number1 
+        <input type="number" id="number1" ng-model="num1" required>
+
+       Enter number2
+        <input type="number" id="number2" ng-model="num2" required>
+
+        <button type="submit">Add</button>
+    </form>
+
+    <p ng-if="result">Result: {{ result }}</p>
+
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('myController', function($scope) {
+            $scope.addNumbers = function() {
+                $scope.result = $scope.num1 + $scope.num2;
+            };
+        });
+    </script>
+</body>
+</html>
+
+
+read student & add to object array
+-------------------------------------
+<!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+    <title>Student Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="studentController">
+    <h1>Student Registration</h1>
+
+    <form ng-submit="addStudent()">
+        Enter student name:
+        <input type="text" ng-model="newStudent.name" required>
+        <button type="submit">Add Student</button>
+    </form>
+
+    <ul>
+        <li ng-repeat="student in students">{{ student.name }}</li>
+    </ul>
+
+    <script>
+        var app = angular.module('studentApp', []);
+
+        app.controller('studentController', function($scope) {
+            $scope.students = [];
+
+            $scope.newStudent = {
+                name: ''
+            };
+
+            $scope.addStudent = function() {
+                $scope.students.push({ name: $scope.newStudent.name });
+                $scope.newStudent.name = ''; 
+            };
+        });
+    </script>
+</body>
+</html>
+
+
+
+CRUD
+-------------------------
+<!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+    <title>Student Information Management</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="studentController">
+    <h1>Student Information Management</h1>
+
+    <!-- Form for adding a new student -->
+    <form ng-submit="addStudent()">
+       Name
+        <input type="text" id="name" ng-model="newStudent.name" required>
+        <br>
+
+      Age
+        <input type="number" id="age" ng-model="newStudent.age" required>
+        <br>
+
+      Email
+        <input type="email" id="email" ng-model="newStudent.email" required>
+
+        <button type="submit">Add Student</button>
+    </form>
+<br><br>
+    <!-- Table to display student information -->
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="student in students">
+                <td>{{ student.name }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.email }}</td>
+                <td>
+                    <button ng-click="editStudent(student)">Edit</button>
+                    <button ng-click="deleteStudent(student)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var app = angular.module('studentApp', []);
+
+        app.controller('studentController', function($scope) {
+            $scope.newStudent = {};
+            $scope.students = [];
+
+            $scope.addStudent = function() {
+                var studentToAdd = {
+                    name: $scope.newStudent.name,
+                    age: $scope.newStudent.age,
+                    email: $scope.newStudent.email
+                };
+                $scope.students.push(studentToAdd);
+                $scope.newStudent = {};
+            };
+
+            $scope.editStudent = function(student) {
+                var index = $scope.students.indexOf(student);
+                $scope.newStudent = $scope.students[index];
+                $scope.students.splice(index, 1);
+            };
+
+            $scope.deleteStudent = function(student) {
+                var index = $scope.students.indexOf(student);
+                $scope.students.splice(index, 1);
+            };
+        });
+    </script>
+</body>
+</html>
+
+
+filter
+----------------------
+<html ng-app="myApp">
+
+    <script src="angularjs.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+         $scope.message = "Welcome to JSS";
+         $scope.amount = 50234; 
+         $scope.mydate=new Date();
+});
+      </script>
+
+   
+<body ng-controller="myController">
+ <div >
+    <h2>{{message | lowercase}}</h2>
+      <h2 ng-bind="message"></h2>
+      <h2>{{message | uppercase}}</h2>
+      <h1>{{amount|number }}</h1>
+      <h1>{{amount|number:3 }}</h1>
+      <h2> {{amount|currency }}</h2>
+      <h2> {{amount|currency:"Rs" }}</h2>
+      <h1>{{mydate}}</h1>
+      <h1>{{mydate | date}}</h1>
+      <h1>{{mydate | date:"yyyy"}}</h1>
+      <h1>{{mydate | date:"MMMM" }}</h1>
+      <h1>{{mydate | date:"hh" }}</h1>
+      <h1>{{mydate | date:"dd-mm-yy" }}</h1>
+      <h1>{{mydate | date:"hh:mm:ss a dd-mm-yy" }}</h1>
+      <h1>{{mydate | date:"short" }}</h1>
+ </div >
+
+
+</body>
+</html>
+
+
+orderby
+---------------------
+<html ng-app="myApp">
+
+    <script src="angularjs.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+         $scope.names=['umesh', 'ramesh', 'suresh', 'ram','sam'] ;
+       
+});
+      </script>
+
+   
+<body ng-controller="myController">
+ <div >
+    <ul>
+        <li ng-repeat="n in names | orderBy">{{n}}</li>
+        <br>
+        <li ng-repeat="n in names | orderBy:'-'">{{n}}</li>
+    </ul>
+ </div >
+
+
+</body>
+</html>
+
+orderby on objcts
+--------------------------------
+<html ng-app="myApp">
+
+    <script src="angularjs.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+            $scope.emp =[{name:'umesh', age:40 , contact:9886}, 
+                        {name:'raj', age:20 , contact:983486},
+                        {name:'ram', age:30 , contact:9334886}]
+       });
+      </script>
+
+   
+<body ng-controller="myController">
+ <div >
+    <table border="1">
+    <tr>
+        <td>Name</td>
+        <td>Age</td>
+        <td>Contact</td>
+    </tr>
+
+    <tr ng-repeat="e in emp | orderBy:'name':'reverse'">
+        <td>{{e.name}}</td>
+        <td>{{e.age}}</td>
+        <td>{{e.contact}}</td>
+    </tr>
+   </table>
+ </div >
+
+
+</body>
+</html>
+
+
+----------------------------------------------
+<!DOCTYPE html>
+<html ng-app="filterApp">
+<head>
+    <title>Simple Filter Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="filterController">
+    <h1>Simple Filter Example</h1>
+
+    <label for="search">Search:</label>
+    <input type="text" id="search" ng-model="searchText">
+
+    <ul>
+        <li ng-repeat="item in items | filter: searchText">{{ item }}</li>
+    </ul>
+
+    <script>
+        var app = angular.module('filterApp', []);
+
+        app.controller('filterController', function($scope) {
+            $scope.items = [
+                'Apple',
+                'Banana',
+                'Cherry',
+                'Date',
+                'Fig',
+                'Grapes',
+                'Lemon',
+                'Mango',
+                'Orange',
+                'Peach'
+            ];
+        });
+    </script>
+</body>
+</html>
+
+
+
+routing
+----------------------------
+u need to download ng-route module
+browse additional modules
+
+
+
+
+
+
+
